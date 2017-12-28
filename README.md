@@ -2,7 +2,7 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
+* [Linkki sovellukseeni](http://manhenri.users.cs.helsinki.fi/projekti/)
 * [Linkki dokumentaatiooni](https://www.github.com)
 
 ## Työn aihe
