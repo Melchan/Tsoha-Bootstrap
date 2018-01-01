@@ -16,4 +16,20 @@
       // Testaa koodiasi täällä
       View::make('userpictures.html');
     }
+
+    public static function testuserpicture(){
+      // Testaa koodiasi täällä
+      View::make('userpicture.html');
+    }
+
+    public static function testedit(){
+      // Testaa koodiasi täällä
+      View::make('testedit.html');
+    }
+
+    public static function testlogin(){
+      // Testaa koodiasi täällä
+      View::make('testlogin.html');
+    }
+
   }

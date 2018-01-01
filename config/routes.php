@@ -11,3 +11,8 @@
   $routes->get('/testuser', function() {
     HelloWorldController::testuser();
   });
+
+  $routes->get('/testuserpicture', function() {
+    HelloWorldController::testedit();
+  });
+
