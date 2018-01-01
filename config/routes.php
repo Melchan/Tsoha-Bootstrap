@@ -8,6 +8,6 @@
     HelloWorldController::sandbox();
   });
 
-  $routes->get('/testuser'), function() {
-  	HelloWorldController::testuser();
-  }
+  $routes->get('/testuser', function() {
+    HelloWorldController::testuser();
+  });
