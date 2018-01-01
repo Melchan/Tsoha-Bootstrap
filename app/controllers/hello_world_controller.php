@@ -14,6 +14,6 @@
 
     public static function testuser(){
       // Testaa koodiasi täällä
-      View::make('testuser.html');
+      View::make('userpictures.html');
     }
   }
