@@ -11,4 +11,9 @@
       // Testaa koodiasi täällä
       View::make('helloworld.html');
     }
+
+    public static function testuser(){
+      // Testaa koodiasi täällä
+      View::make('testuser.html');
+    }
   }
