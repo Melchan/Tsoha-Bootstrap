@@ -13,6 +13,16 @@
   });
 
   $routes->get('/testuserpicture', function() {
+    HelloWorldController::testuserpicture();
+  });
+
+  $routes->get('/testedit', function() {
     HelloWorldController::testedit();
   });
+
+  $routes->get('/testlogin', function() {
+    HelloWorldController::testlogin();
+  });
+
+
 
