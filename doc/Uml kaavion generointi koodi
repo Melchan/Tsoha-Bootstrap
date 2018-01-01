@@ -7,7 +7,8 @@
 https://yuml.me/diagram/scruffy/class/draw
 
 
-[Picture|-id(key) : int; -nimi : string; -kuvaus : string; (keys) categories : int; (key) user : int] ++--++ [Category|-id(key) : int; nimi : string; (keys) pictures]
+[Picture|-id(key) : int; -nimi : string; -kuvaus : string;-kuva : image  ; (keys) categories : int; (key) user : int] ++--++ [Category|-id(key) : int; nimi : string; (keys) pictures]
 [User|-id(key) : int; -nimi : string;]--1>[Picture]
 [Comment|-id(key) : int; -nimi : string;]<1--[User]
 [Comment]<1--[picture]
+
