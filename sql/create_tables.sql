@@ -16,7 +16,6 @@ CREATE TABLE picture(
   name varchar(50) NOT NULL,
   picture bytea NOT NULL,
   description varchar(400),
-  postDate date DEFAULT GETDATE(),
 );
 
 CREATE TABLE category(
