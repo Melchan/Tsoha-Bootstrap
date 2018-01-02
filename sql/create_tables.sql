@@ -2,7 +2,7 @@
 CREATE TABLE owner(
   id SERIAL PRIMARY KEY, -- SERIAL tyyppinen pääavain pitää huolen, että tauluun lisätyllä rivillä on aina uniikki pääavain. Kätevää!
   name varchar(50) NOT NULL, -- Muista erottaa sarakkeiden määrittelyt pilkulla!
-  password varchar(50) NOT NULL
+  password varchar(50) NOT NULL,
 );
 
 CREATE TABLE category(
@@ -16,7 +16,7 @@ CREATE TABLE picture(
   name varchar(50) NOT NULL,
   picture bytea NOT NULL,
   description varchar(400),
-  added DATE DEFAULT CURRENT_DATE,
+  postDate date DEFAULT GETDATE(),
 );
 
 CREATE TABLE category(
