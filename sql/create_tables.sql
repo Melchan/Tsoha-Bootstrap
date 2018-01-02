@@ -10,6 +10,15 @@ CREATE TABLE category(
   name varchar(50) NOT NULL,
 );
 
+CREATE TABLE picture(
+  id int PRIMARY KEY,
+  owner_id int REFERENCES owner(id), -- Viiteavain Player-tauluun
+  name varchar(50) NOT NULL,
+  picture bytea NOT NULL,
+  description varchar(400),
+  postDate date DEFAULT GETDATE(),
+);
+
 CREATE TABLE category(
   id int PRIMARY KEY,
   name varchar(50) NOT NULL,
