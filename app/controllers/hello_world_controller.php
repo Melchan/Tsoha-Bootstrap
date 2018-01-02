@@ -17,9 +17,9 @@
       View::make('testedit.html');
     }
 
-    public static function testlogin(){
+    public static function login(){
       // Testaa koodiasi täällä
-      View::make('testlogin.html');
+      View::make('login.html');
     }
 
     public static function testuser(){

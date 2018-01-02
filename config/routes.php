@@ -20,7 +20,7 @@
     HelloWorldController::testedit();
   });
 
-  $routes->get('/testlogin', function() {
+  $routes->get('/login', function() {
     HelloWorldController::testlogin();
   });
 
