@@ -14,7 +14,7 @@ CREATE TABLE picture(
   id SERIAL PRIMARY KEY,
   owner_id int REFERENCES owner(id), -- Viiteavain Player-tauluun
   title varchar(50) NOT NULL,
-  picture bytea NOT NULL,
+  picture bytea,
   description varchar(400),
   postDate date DEFAULT current_timestamp
 );
