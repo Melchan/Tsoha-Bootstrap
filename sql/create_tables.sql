@@ -27,8 +27,8 @@ CREATE TABLE comment(
 );
 
 CREATE TABLE picture_category(
-  picture_id int REFERENCES picture (picture_id) ON UPDATE CASCADE ON DELETE CASCADE, 
-  category_id int REFERENCES category (category_id) ON UPDATE CASCADE ON DELETE CASCADE,
+  picture_id int REFERENCES picture(id) ON UPDATE CASCADE ON DELETE CASCADE, 
+  category_id int REFERENCES category(id) ON UPDATE CASCADE ON DELETE CASCADE,
   category_order SMALLINT,
   PRIMARY KEY (picture_id, category_id)
 );
