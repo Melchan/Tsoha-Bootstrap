@@ -1,1 +1,10 @@
 -- Lisää DROP TABLE lauseet tähän tiedostoon
+DROP TABLE IF EXISTS owner CASCADE; -- Muista IF EXISTS ja CASCADE parametrit!
+
+DROP TABLE IF EXISTS category CASCADE;
+
+DROP TABLE IF EXISTS picture CASCADE;
+
+DROP TABLE IF EXISTS comment CASCADE;
+
+DROP TABLE IF EXISTS picture_category CASCADE;
