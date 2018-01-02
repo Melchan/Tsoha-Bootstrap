@@ -12,9 +12,7 @@ CREATE TABLE category(
 
 CREATE TABLE picture(
   id SERIAL PRIMARY KEY,
-  owner_id INTEGER REFERENCES owner(id), -- Viiteavain Player-tauluun
   name varchar(50) NOT NULL,
-  picture bytea NOT NULL,
   description varchar(400),
 );
 
