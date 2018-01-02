@@ -32,7 +32,7 @@
         <span class="icon-bar"></span>
       </button>
       <!-- Sovelluksen nimi -->
-      <a class="navbar-brand" href="#">Kuvakirjasto</a>
+      <a class="navbar-brand" href="{{base_path}}/">Kuvakirjasto</a>
     </div>
 
     <div class="collapse navbar-collapse" id="navigation">
@@ -50,18 +50,11 @@
 
     <div id="main-container">
       <!-- Dynaaminen sisältö tulee tähän -->
-      {% block content %}{% endblock %}
+      {% block content %}
+
+
+      {% endblock %}
     </div>
 
-    {% block body %}
-      <!-- jQuery -->
-      <script src="{{base_path}}/assets/js/jquery.min.js"></script>
-
-      <!-- Bootstrap (skriptitiedosto) -->
-      <script src="{{base_path}}/assets/bootstrap/js/bootstrap.min.js"></script>
-
-      <!-- Oma skriptitiedostomme -->
-      <script src="{{base_path}}/assets/js/site.js"></script>
-    {% endblock %}
   </body>
 </html>
