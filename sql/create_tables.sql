@@ -16,7 +16,7 @@ CREATE TABLE picture(
   name varchar(50) NOT NULL,
   picture bytea NOT NULL,
   description varchar(400),
-  added DATE DEFAULT CURRENT_DATE
+  added DATE
 );
 
 CREATE TABLE category(
