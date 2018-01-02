@@ -21,7 +21,7 @@
   });
 
   $routes->get('/login', function() {
-    HelloWorldController::testlogin();
+    HelloWorldController::login();
   });
 
 
