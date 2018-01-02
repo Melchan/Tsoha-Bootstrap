@@ -16,7 +16,7 @@ CREATE TABLE picture(
   title varchar(50) NOT NULL,
   picture bytea NOT NULL,
   description varchar(400),
-  postDate date DEFAULT GETDATE()
+  postDate date DEFAULT current_timestamp
 );
 
 CREATE TABLE comment(
