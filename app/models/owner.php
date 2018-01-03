@@ -10,7 +10,7 @@
 
     public static function all() {
 
-    	$query = DP::connection()->prepare('SELECT * FROM owner');
+    	$query = DB::connection()->prepare('SELECT * FROM owner');
     	$query -> execute();
     	$rows = $query->fectAll();
     	$owners = array();
@@ -30,7 +30,7 @@
 
     public static function find($id) {
 
-    	$query = DP::connection()->prepare('SELECT * FROM owner WHERE id = :id LIMIT 1');
+    	$query = DB::connection()->prepare('SELECT * FROM owner WHERE id = :id LIMIT 1');
     	$query->execute(array('id' => $id));
     	$row = $query->fetc();
 

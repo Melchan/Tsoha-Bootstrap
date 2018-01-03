@@ -10,7 +10,7 @@
 
     public static function all() {
 
-    	$query = DP::connection()->prepare('SELECT * FROM comment');
+    	$query = DB::connection()->prepare('SELECT * FROM comment');
     	$query -> execute();
     	$rows = $query->fectAll();
     	$comments = array();
@@ -31,7 +31,7 @@
 
     public static function find($id) {
 
-    	$query = DP::connection()->prepare('SELECT * FROM comment WHERE id = :id LIMIT 1');
+    	$query = DB::connection()->prepare('SELECT * FROM comment WHERE id = :id LIMIT 1');
     	$query->execute(array('id' => $id));
     	$row = $query->fetc();
 
@@ -50,7 +50,7 @@
 
         public static function save() {
 
-    	$query = DP::connection()->prepare('INSERT INTO comment (message, owner_id, picture_id) 
+    	$query = DB::connection()->prepare('INSERT INTO comment (message, owner_id, picture_id) 
     		VALUES (:message, :owner_id, :picture_id) RETURNING id');
     	$query->execute(array('message' => $this->message, 'owner_id' => $this->owner_id, 
     		'picture_id' => $this->picture_id));
