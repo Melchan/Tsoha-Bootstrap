@@ -9,9 +9,9 @@
 
     public static function sandbox(){
       //$skyrim = Joke::find(1);
-      $jokes = Joke::all();
+      $Owners = Owner::all();
       // Kint-luokan dump-metodi tulostaa muuttujan arvon
-      Kint::dump($jokes);
+      Kint::dump($Owners);
       //Kint::dump($skyrim);
     }
 
