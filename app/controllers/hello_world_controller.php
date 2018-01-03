@@ -8,11 +8,11 @@
     }
 
     public static function sandbox(){
-      $skyrim = Joke::find(1);
+      //$skyrim = Joke::find(1);
       $games = Joke::all();
       // Kint-luokan dump-metodi tulostaa muuttujan arvon
       Kint::dump($games);
-      Kint::dump($skyrim);
+      //Kint::dump($skyrim);
     }
 
     public static function testedit(){
