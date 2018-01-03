@@ -24,5 +24,10 @@
     HelloWorldController::login();
   });
 
+  $routes->get('/joke', function() {
+    JokeController::index();
+  });
+
+
 
 

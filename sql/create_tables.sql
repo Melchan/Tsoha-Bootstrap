@@ -12,7 +12,7 @@ CREATE TABLE category(
 
 CREATE TABLE joke(
   id SERIAL PRIMARY KEY,
-  owner_id int REFERENCES owner(id), -- Viiteavain Player-tauluun
+  owner_name varchar(10), -- Viiteavain Player-tauluun
   title varchar(50) NOT NULL,
   description varchar(400)
 );

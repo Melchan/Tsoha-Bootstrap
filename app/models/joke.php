@@ -2,7 +2,7 @@
 
   class Joke extends BaseModel{
 
-    public $id, $owner_id, $title, $description;
+    public $id, $owner_name, $title, $description;
 
     public function __constructor($attributes) {
     	parent::__constructor($attributes);
@@ -20,7 +20,7 @@
     		
     		$jokes[] = new Joke(array(
     			'id' => $row['id'],
-    			'owner_id' => $row['owner_id'],
+    			'owner_name' => $row['owner_name'],
     			'title' => $row['title'],
     			'description' => $row['description']
         		));
@@ -38,7 +38,7 @@
     	if($row) {
     		$joke = new Joke(array(
     			'id' => $row['id'],
-    			'owner_id' => $row['owner_id'],
+    			'owner_name' => $row['owner_name'],
     			'title' => $row['title'],
     			'description' => $row['description']
     		));
@@ -48,10 +48,11 @@
     	return null;
     }
 
+
         public static function save() {
 
-    	$query = DB::connection()->prepare('INSERT INTO category (owner_id, title, description) VALUES (:owner_id, :title, :description) RETURNING id');
-    	$query->execute(array('owner_id' => $this->owner_id, 'title' => $this->title,
+    	$query = DB::connection()->prepare('INSERT INTO category (owner_name, title, description) VALUES (:owner_name, :title, :description) RETURNING id');
+    	$query->execute(array('owner_name' => $this->owner_name, 'title' => $this->title,
             'description' => $this->description));
     	$row = $query->fetch();
     	//Kint::trace();
