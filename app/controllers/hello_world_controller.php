@@ -11,7 +11,7 @@
       //$skyrim = Joke::find(1);
       $Jokes = Joke::all();
       // Kint-luokan dump-metodi tulostaa muuttujan arvon
-      Kint::dump($jokes);
+      Kint::dump($Jokes);
       //Kint::dump($skyrim);
     }
 
