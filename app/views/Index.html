@@ -6,7 +6,7 @@
 
     {%for joke in jokes%}
     <tr>
-        <td><a href="{{base_path}}/joke/{{joke.id}}">{{joke.name}}
+        <td><a href="{{base_path}}/{{joke.id}}">{{joke.name}}
         </td>
         <td><a class="btn btn-default btn-sm" href="{{base_path}}/joke/{{joke.id}}/del">Done!</a>
         </td>
