@@ -51,7 +51,7 @@
         public static function save() {
 
     	$query = DP::connection()->prepare('INSERT INTO comment (message, owner_id, picture_id) 
-    		VALUES (:message, :owner_id, :picture_id) RETURNING id')
+    		VALUES (:message, :owner_id, :picture_id) RETURNING id');
     	$query->execute(array('message' => $this->message, 'owner_id' => $this->owner_id, 
     		'picture_id' => $this->picture_id));
     	$row = $query->fetc();

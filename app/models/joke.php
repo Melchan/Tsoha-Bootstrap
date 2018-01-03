@@ -54,7 +54,7 @@
 
         public static function save() {
 
-    	$query = DP::connection()->prepare('INSERT INTO category (owner_id, title, picture, description, postDate) VALUES (:owner_id, :title, :description, :postDate) RETURNING id')
+    	$query = DP::connection()->prepare('INSERT INTO category (owner_id, title, picture, description, postDate) VALUES (:owner_id, :title, :description, :postDate) RETURNING id');
     	$query->execute(array('owner_id' => $this->owner_id, 'title' => $this->title, 'picture' => $this->picture, 'description' => $this->description));
     	$row = $query->fetc();
     	//Kint::trace();

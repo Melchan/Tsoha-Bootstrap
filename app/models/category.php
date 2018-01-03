@@ -46,7 +46,7 @@
 
     public static function save() {
 
-    	$query = DP::connection()->prepare('INSERT INTO category (tag) VALUES (:tag) RETURNING id')
+    	$query = DP::connection()->prepare('INSERT INTO category (tag) VALUES (:tag) RETURNING id');
     	$query->execute(array('tag' => $this->tag));
     	$row = $query->fetc();
     	//Kint::trace();
