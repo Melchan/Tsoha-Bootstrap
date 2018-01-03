@@ -14,8 +14,6 @@
     	$query -> execute();
     	$rows = $query->fetchAll();
     	$owners = array();
-        echo sizeof($owners);
-
 
     	foreach ($rows as $row) {
     		
