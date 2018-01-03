@@ -22,7 +22,7 @@ class JokeController extends BaseController {
     }
 
     public static function joke($id) {
-    	$joke = Joke::find(:id);
+    	$joke = Joke::find($id);
     	View::make('joke.html', array('joke' =>$joke));
     }
 
