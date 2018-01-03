@@ -12,7 +12,7 @@
 
     	$query = DB::connection()->prepare('SELECT * FROM comment');
     	$query -> execute();
-    	$rows = $query->fectAll();
+    	$rows = $query->fetchAll();
     	$comments = array();
 
 
@@ -33,7 +33,7 @@
 
     	$query = DB::connection()->prepare('SELECT * FROM comment WHERE id = :id LIMIT 1');
     	$query->execute(array('id' => $id));
-    	$row = $query->fetc();
+    	$row = $query->fetch();
 
     	if($row) {
     		$comment = new Comment(array(
@@ -54,7 +54,7 @@
     		VALUES (:message, :owner_id, :picture_id) RETURNING id');
     	$query->execute(array('message' => $this->message, 'owner_id' => $this->owner_id, 
     		'picture_id' => $this->picture_id));
-    	$row = $query->fetc();
+    	$row = $query->fetch();
     	//Kint::trace();
     	//Kint::dump($row);
     	$this->id = row['id'];

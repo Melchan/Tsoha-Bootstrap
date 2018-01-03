@@ -12,7 +12,7 @@
 
     	$query = DB::connection()->prepare('SELECT * FROM owner');
     	$query -> execute();
-    	$rows = $query->fectAll();
+    	$rows = $query->fetchAll();
     	$owners = array();
 
 
@@ -32,7 +32,7 @@
 
     	$query = DB::connection()->prepare('SELECT * FROM owner WHERE id = :id LIMIT 1');
     	$query->execute(array('id' => $id));
-    	$row = $query->fetc();
+    	$row = $query->fetch();
 
     	if($row) {
     		$owner = new Owner(array(

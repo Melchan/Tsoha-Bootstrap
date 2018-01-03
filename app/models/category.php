@@ -12,7 +12,7 @@
 
     	$query = DB::connection()->prepare('SELECT * FROM category');
     	$query -> execute();
-    	$rows = $query->fectAll();
+    	$rows = $query->fetchAll();
     	$categories = array();
 
 
@@ -31,7 +31,7 @@
 
     	$query = DB::connection()->prepare('SELECT * FROM category WHERE id = :id LIMIT 1');
     	$query->execute(array('id' => $id));
-    	$row = $query->fetc();
+    	$row = $query->fetch();
 
     	if($row) {
     		$category = new category(array(
@@ -48,7 +48,7 @@
 
     	$query = DB::connection()->prepare('INSERT INTO category (tag) VALUES (:tag) RETURNING id');
     	$query->execute(array('tag' => $this->tag));
-    	$row = $query->fetc();
+    	$row = $query->fetch();
     	//Kint::trace();
     	//Kint::dump($row);
     	$this->id = row['id'];

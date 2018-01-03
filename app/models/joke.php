@@ -12,7 +12,7 @@
 
     	$query = DB::connection()->prepare('SELECT * FROM joke');
     	$query -> execute();
-    	$rows = $query->fectAll();
+    	$rows = $query->fetchAll();
     	$jokes = array();
 
 
@@ -35,7 +35,7 @@
 
     	$query = DB::connection()->prepare('SELECT * FROM joke WHERE id = :id LIMIT 1');
     	$query->execute(array('id' => $id));
-    	$row = $query->fetc();
+    	$row = $query->fetch();
 
     	if($row) {
     		$joke = new Joke(array(
@@ -56,7 +56,7 @@
 
     	$query = DB::connection()->prepare('INSERT INTO category (owner_id, title, picture, description, postDate) VALUES (:owner_id, :title, :description, :postDate) RETURNING id');
     	$query->execute(array('owner_id' => $this->owner_id, 'title' => $this->title, 'picture' => $this->picture, 'description' => $this->description));
-    	$row = $query->fetc();
+    	$row = $query->fetch();
     	//Kint::trace();
     	//Kint::dump($row);
     	$this->id = row['id'];
