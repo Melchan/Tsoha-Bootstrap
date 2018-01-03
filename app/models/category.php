@@ -41,7 +41,7 @@
     		return $category;
     	}
 
-    	return null
+    	return null;
     }
 
     public static function save() {

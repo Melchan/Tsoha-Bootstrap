@@ -49,7 +49,7 @@
     		return $joke;
     	}
 
-    	return null
+    	return null;
     }
 
         public static function save() {

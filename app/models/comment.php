@@ -45,7 +45,7 @@
     		return $comment;
     	}
 
-    	return null
+    	return null;
     }
 
         public static function save() {

@@ -43,7 +43,7 @@
     		return $game;
     	}
 
-    	return null
+    	return null;
     }
 
     public function save(){
