@@ -8,8 +8,11 @@
     }
 
     public static function sandbox(){
-      // Testaa koodiasi täällä
-      View::make('helloworld.html');
+      $skyrim = Joke::find(1);
+      $games = Joke::all();
+      // Kint-luokan dump-metodi tulostaa muuttujan arvon
+      Kint::dump($games);
+      Kint::dump($skyrim);
     }
 
     public static function testedit(){
@@ -24,12 +27,12 @@
 
     public static function testuser(){
       // Testaa koodiasi täällä
-      View::make('userpictures.html');
+      View::make('ownerjokes.html');
     }
 
-    public static function testuserpicture(){
+    public static function testownerjoke(){
       // Testaa koodiasi täällä
-      View::make('userpicture.html');
+      View::make('ownerjoke.html');
     }
 
   }

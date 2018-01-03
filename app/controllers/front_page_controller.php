@@ -1,8 +1,8 @@
 <?php
 
-  class Picture extends BaseModel{
+  class FrontpageController extends BaseController{
 
-    public $id, $owner_id, $title, $picture, $description, $postDate;
+    public $id, $name, $password;
 
     public function __constructor($attributes) {
     	parent::__constructor($attributes);

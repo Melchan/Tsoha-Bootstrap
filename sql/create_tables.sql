@@ -10,7 +10,7 @@ CREATE TABLE category(
   tag varchar(50) NOT NULL
 );
 
-CREATE TABLE picture(
+CREATE TABLE joke(
   id SERIAL PRIMARY KEY,
   owner_id int REFERENCES owner(id), -- Viiteavain Player-tauluun
   title varchar(50) NOT NULL,
@@ -23,12 +23,12 @@ CREATE TABLE comment(
   id SERIAL PRIMARY KEY, -- SERIAL tyyppinen pääavain pitää huolen, että tauluun lisätyllä rivillä on aina uniikki pääavain. Kätevää!
   message varchar(50) NOT NULL, -- Muista erottaa sarakkeiden määrittelyt pilkulla!
   owner_id INTEGER REFERENCES owner(id),
-  picture_id INTEGER REFERENCES picture(id)
+  joke_id INTEGER REFERENCES joke(id)
 );
 
-CREATE TABLE picture_category(
-  picture_id int REFERENCES picture(id) ON UPDATE CASCADE ON DELETE CASCADE, 
+CREATE TABLE joke_category(
+  joke_id int REFERENCES joke(id) ON UPDATE CASCADE ON DELETE CASCADE, 
   category_id int REFERENCES category(id) ON UPDATE CASCADE ON DELETE CASCADE,
   category_order SMALLINT,
-  PRIMARY KEY (picture_id, category_id)
+  PRIMARY KEY (joke_id, category_id)
 );

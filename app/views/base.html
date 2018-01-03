@@ -36,10 +36,9 @@
     </div>
 
     <div class="collapse navbar-collapse" id="navigation">
-      <ul class="nav navbar-nav">
-        <!-- Navigaation linkit -->
+     <!-- <ul class="nav navbar-nav">
         <li><a href="#">kuvat</a></li>
-      </ul>
+      </ul> -->
 
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{base_path}}/login">Kirjaudu sisään</a></li>
@@ -56,5 +55,15 @@
       {% endblock %}
     </div>
 
+    {% block body %}
+      <!-- jQuery -->
+      <script src="{{base_path}}/assets/js/jquery.min.js"></script>
+
+      <!-- Bootstrap (skriptitiedosto) -->
+      <script src="{{base_path}}/assets/bootstrap/js/bootstrap.min.js"></script>
+
+      <!-- Oma skriptitiedostomme -->
+      <script src="{{base_path}}/assets/js/site.js"></script>
+    {% endblock %}
   </body>
 </html>

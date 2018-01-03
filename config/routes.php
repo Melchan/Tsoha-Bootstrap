@@ -12,8 +12,8 @@
     HelloWorldController::testuser();
   });
 
-  $routes->get('/testuserpicture', function() {
-    HelloWorldController::testuserpicture();
+  $routes->get('/testownerjoke', function() {
+    HelloWorldController::testowenerjoke();
   });
 
   $routes->get('/testedit', function() {
