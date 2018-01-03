@@ -2,7 +2,7 @@
 
   class Joke extends BaseModel{
 
-    public $id, $owner_id, $title, $picture, $description, $postDate;
+    public $id, $owner_id, $title, $description;
 
     public function __constructor($attributes) {
     	parent::__constructor($attributes);
@@ -22,10 +22,8 @@
     			'id' => $row['id'],
     			'owner_id' => $row['owner_id'],
     			'title' => $row['title'],
-    			'picture' => $row['picture'],
-    			'description' => $row['description'],
-    			'postDate' => $row['postDate']
-    		));
+    			'description' => $row['description']
+        		));
     	}
 
     	return $jokes;
@@ -42,9 +40,7 @@
     			'id' => $row['id'],
     			'owner_id' => $row['owner_id'],
     			'title' => $row['title'],
-    			'picture' => $row['picture'],
-    			'description' => $row['description'],
-    			'postDate' => $row['postDate']
+    			'description' => $row['description']
     		));
     		return $joke;
     	}
@@ -54,12 +50,12 @@
 
         public static function save() {
 
-    	$query = DB::connection()->prepare('INSERT INTO category (owner_id, title, picture, description, postDate) VALUES (:owner_id, :title, :description, :postDate) RETURNING id');
-    	$query->execute(array('owner_id' => $this->owner_id, 'title' => $this->title, 'picture' => $this->picture, 'description' => $this->description));
+    	$query = DB::connection()->prepare('INSERT INTO category (owner_id, title, description) VALUES (:owner_id, :title, :description) RETURNING id');
+    	$query->execute(array('owner_id' => $this->owner_id, 'title' => $this->title,
+            'description' => $this->description));
     	$row = $query->fetch();
     	//Kint::trace();
     	//Kint::dump($row);
     	$this->id = row['id'];
-    	$this->postDate = row['postDate'];
     }
   }
