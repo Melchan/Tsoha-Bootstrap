@@ -101,7 +101,7 @@
             if($this->owner_id == '' || $this->owner_id == null) {
                 $errors[] = 'owner_id on tyhjä';
             }
-            if(!is_int($this->owner_id){
+            if(!is_int($this->owner_id)){
                 $errors[] = 'owner_id sisältää jotain muuta kuin lukuja';
             }
             return $errors;
