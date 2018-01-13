@@ -21,7 +21,7 @@
   });
 
   $routes->get('/login', function() {
-    HelloWorldController::login();
+    UserController::login();
   });
 
   $routes->get('/joke', function() {

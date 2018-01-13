@@ -30,6 +30,25 @@
     	return $jokes;
     }
 
+    public static function user_all($id){
+        $query = DB::connection()->prepare('SELECT * FROM joke WHERE owner_id = :owner_id');
+        $query -> execute(array('owner_id' => $id));
+        $rows = $query->fetchAll();
+        $jokes = array();
+
+        foreach ($rows as $row) {
+            
+            $jokes[] = new Joke(array(
+                'id' => $row['id'],
+                'owner_id' => $row['owner_id'],
+                'title' => $row['title'],
+                'description' => $row['description']
+                ));
+        }
+
+        return $jokes;
+    }
+
     public static function find($id) {
 
     	$query = DB::connection()->prepare('SELECT * FROM joke WHERE id = :id LIMIT 1');

@@ -7,6 +7,10 @@ class JokeController extends BaseController {
 		View::make('index.html', array('jokes' => $jokes));
 	}
 
+    public static function user_jokes(){
+        
+    }
+
 
 	public static function store(){
     $params = $_POST;
@@ -20,9 +24,7 @@ class JokeController extends BaseController {
 
     	$joke->save();
 
-    	Redirect::to('/' . $joke->id, array('message' => 'Vitsi on lisätty kirjastoosi!'));
-
-    	
+    	Redirect::to('/' . $joke->id, array('message' => 'Vitsi on lisätty kirjastoosi!'));	
     }
 
     public static function joke($id) {
