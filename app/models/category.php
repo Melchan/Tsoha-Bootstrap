@@ -2,10 +2,11 @@
 
   class Category extends BaseModel{
 
-    public $id, $tag;
+    public $id, $tag, $validators;
 
     public function __constructor($attributes) {
     	parent::__constructor($attributes);
+        $this->validators = array('validate_tag');
     }
 
     public static function all() {
@@ -52,5 +53,13 @@
     	//Kint::trace();
     	//Kint::dump($row);
     	$this->id = row['id'];
+    }
+
+    public function validate_tag() {
+        $errors = array();
+        if($this->tag == '' || $this->tag == null) {
+            $errors[] = 'categorian tagi ei saa olla tyhjä';
+        }
+        return $errors;
     }
   }

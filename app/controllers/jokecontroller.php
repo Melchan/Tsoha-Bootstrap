@@ -7,64 +7,55 @@ class JokeController extends BaseController {
 		View::make('index.html', array('jokes' => $jokes));
 	}
 
+
 	public static function store(){
     $params = $_POST;
-    	if (checkTitle($params['name']) 
-    		&& checkOwnerName($params['owner_name'])
-    		&& checkDescription($params['description'])) 
-    	{
-    		$joke = new Joke(array(
-      			'title' => $params['title'],
-      			'owner_name' => $params['owner_name'],
-      			'description' => $params['description'],
-    		));
+    $user = $this->get_user_logged_in();
 
-    		$joke->save();
+    	$joke = new Joke(array(
+      		'title' => $params['title'],
+      		'owner_id' => $user->id,
+      		'description' => $params['description'],
+    	));
 
-    		Redirect::to('/' . $joke->id, array('message' => 'Vitsi on lisätty kirjastoosi!'));
+    	$joke->save();
 
-    	} 
+    	Redirect::to('/' . $joke->id, array('message' => 'Vitsi on lisätty kirjastoosi!'));
+
+    	
     }
 
     public static function joke($id) {
     	$joke = Joke::find($id);
     	View::make('joke.html', array('joke' =>$joke));
     }
+    // HTML puoli toteuttamatta
+    public static function update($id) {
+        $params = $_POST;
+        $user = $this->get_user_logged_in();
 
-    private boolean function checkTitle($title) {
-    	if ($title != '' && strlen($title) >= 3) {
-    		return true;
-    	} else {
-    		View::make('/new.html', array('error' => 'Otsikossa oli virhe!'));
-    		return false;
-    	}
+        $attributes = array(
+            'title' => $params['title'],
+            'owner_id' => $user->id,
+            'description' => $params['description'],
+        );
+
+        $joke = new Joke($attributes);
+        $errors = $joke->errors();
+
+        if(count($errors) > 0) {
+            view::make('joke/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+        }else{
+            $joke->update();
+
+            Redirect::to('joke' . $joke->$id, array('message' => 'Vitsi muokattu onnistuneesti!'));
+        }
     }
-
-    private boolean function checkOwnerName($name) {
-    	if ($name != '' && strlen($name) >= 2) {
-    		return true;
-    	} else {
-    		View::make('/new.html', array('error' => 'Luojan nimessä virhe oli virhe!'));
-    		return false;
-    	}
-    }
-
-    private boolean function checkDescription($description) {
-    	if ($title != '' && strlen($title) >= 5) {
-    		return true;
-    	} else {
-    		View::make('/new.html', array('error' => 'Vitsissä oli virhe!'));
-    		return false;
-    	}
-    }
-
-    private boolean function checkTitle($title) {
-    	if ($title != '' && strlen($title) >= 3) {
-    		return true;
-    	} else {
-    		View::make('/new.html', array('error' => 'Otsikossa oli virhe!'));
-    		return false;
-    	}
+    //html puoli toteuttamatta
+    public static function destroy($id) {
+        $joke = new Joke(array('id' => $id));
+        $joke->destroy();
+        Redirect::to('/joke', array('message' => 'Vitsi poistettu onnistuneesti!'));
     }
 
 }

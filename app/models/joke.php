@@ -2,10 +2,11 @@
 
   class Joke extends BaseModel{
 
-    public $id, $owner_name, $title, $description;
+    public $id, $owner_id, $title, $description, $validators;
 
     public function __constructor($attributes) {
     	parent::__constructor($attributes);
+        $this->validators = array('validate_title', 'validate_description', 'validate_owner_id');
     }
 
     public static function all() {
@@ -20,7 +21,7 @@
     		
     		$jokes[] = new Joke(array(
     			'id' => $row['id'],
-    			'owner_name' => $row['owner_name'],
+    			'owner_id' => $row['owner_id'],
     			'title' => $row['title'],
     			'description' => $row['description']
         		));
@@ -38,7 +39,7 @@
     	if($row) {
     		$joke = new Joke(array(
     			'id' => $row['id'],
-    			'owner_name' => $row['owner_name'],
+    			'owner_id' => $row['owner_id'],
     			'title' => $row['title'],
     			'description' => $row['description']
     		));
@@ -51,12 +52,36 @@
 
         public static function save() {
 
-    	$query = DB::connection()->prepare('INSERT INTO category (owner_name, title, description) VALUES (:owner_name, :title, :description) RETURNING id');
-    	$query->execute(array('owner_name' => $this->owner_name, 'title' => $this->title,
+    	$query = DB::connection()->prepare('INSERT INTO category (owner_id, title, description) VALUES (:owner_id, :title, :description) RETURNING id');
+    	$query->execute(array('owner_id' => $this->owner_id, 'title' => $this->title,
             'description' => $this->description));
     	$row = $query->fetch();
     	//Kint::trace();
     	//Kint::dump($row);
     	$this->id = row['id'];
     }
+
+        public function validate_title() {
+            $errors = array();
+            if($this->title == '' || $this->title == null) {
+                    $errors[] = 'Otsikko ei saa olla tyhjä.';
+            }
+            return $errors;
+        }
+
+        public function validate_description() {
+            $errors = array();
+            if($this->description == '' || $this->description == null) {
+                $errors[] = 'Vitsi osio ei saa olla tyhjä';
+            }
+            return $errors;
+        }
+
+        public function validate_owner_id() {
+            $errors = array();
+            if($this->owner_id == '' || $this->owner_id == null || !is_int($this->owner_id)) {
+                    $errors[] = 'owner_id ei ole asetettu automaattisesti toimimaan kunnolla.';
+            }
+            return $errors;
+        }
   }
