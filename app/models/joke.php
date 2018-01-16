@@ -30,7 +30,7 @@
     	return $jokes;
     }
 
-    public static function user_all($id){
+    public static function all_user($id){
         $query = DB::connection()->prepare('SELECT * FROM joke WHERE owner_id = :owner_id');
         $query -> execute(array('owner_id' => $id));
         $rows = $query->fetchAll();
