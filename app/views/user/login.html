@@ -10,12 +10,10 @@
     </div>
   {% endif %}
 
-  {% if messages %}
+  {% if message %}
     <div class="alert alert-danger">
       <ul>
-        {% for message in messages %}
           <li>{{message}}</li>
-        {% endfor %}
       </ul>
     </div>
   {% endif %}
