@@ -23,6 +23,9 @@
   $routes->get('/login', function() {
     UserController::login();
   });
+  $routes->post('/login', function(){
+  UserController::handle_login();
+  });
 
   $routes->get('/joke', function() {
     JokeController::index();
