@@ -18,7 +18,7 @@
 
   $routes->post('/register', function(){
     UserController::handleRegistration();
-  })
+  });
 
   $routes->get('/joke', function() {
     JokeController::index();
