@@ -16,6 +16,10 @@
     JokeController::index();
   });
 
+  $routes->get('/register', function(){
+    UserController::register();
+  });
+
 
 
 
