@@ -5,7 +5,7 @@
     public $id, $name, $password, $passwordRe, $validators;
 
     public function __constructor($attributes) {
-    	parent::__constructor($attributes);
+    	parent::construct($attributes);
         $this->validators = array('validate_name', 'validate_password');
     }
 
