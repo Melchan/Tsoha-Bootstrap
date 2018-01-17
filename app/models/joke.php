@@ -5,7 +5,7 @@
     public $id, $owner_id, $title, $description, $validators;
 
     public function __constructor($attributes) {
-    	parent::__constructor($attributes);
+    	parent::construct($attributes);
         $this->validators = array('validate_title', 'validate_description', 'validate_owner_id');
     }
 

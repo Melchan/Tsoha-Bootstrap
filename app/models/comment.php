@@ -5,7 +5,7 @@
     public $id, $message, $owner_id, $joke_id, $validators;
 
     public function __constructor($attributes) {
-    	parent::__constructor($attributes);
+    	parent::construct($attributes);
         $this->validators = array('$validate_message','validate_owner_id', 'validate_joke_id') ;
     }
 

@@ -5,7 +5,7 @@
     public $id, $tag, $validators;
 
     public function __constructor($attributes) {
-    	parent::__constructor($attributes);
+    	parent::construct($attributes);
         $this->validators = array('validate_tag');
     }
 
