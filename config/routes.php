@@ -12,12 +12,16 @@
     UserController::handle_login();
   });
 
-  $routes->get('/joke', function() {
-    JokeController::index();
-  });
-
   $routes->get('/register', function(){
     UserController::register();
+  });
+
+  $routes->post('/register', function(){
+    UserController::handleRegistration();
+  })
+
+  $routes->get('/joke', function() {
+    JokeController::index();
   });
 
 
