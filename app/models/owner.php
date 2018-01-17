@@ -28,7 +28,7 @@
     	return $owners;
     }
 
-    public static function find($id) {
+    public static function find($id){
 
     	$query = DB::connection()->prepare('SELECT * FROM owner WHERE id = :id LIMIT 1');
     	$query->execute(array('id' => $id));
@@ -92,19 +92,19 @@
 
     public function validate_password() {
         $errors = array();
-        if($this->password == '' || $this->password == null) {
+        if($this->password == '' || $this->password == null){
             $errors[] = 'salasana ei voi olla tyhjä.';
         }
 
-        if($this->password != $this->passwordRe) {
+        if(!strcmp($this->password,$this->passwordRe)){
             $errors[] = 'salasanat eivät täsmää.';
         }
 
-        if(strlen($this->password) > 20) {
+        if(strlen($this->password) > 20){
             $errors[] = 'salasana on yli 20 merkkiä.';
         }
 
-        if(strlen($this->password) < 4) {
+        if(strlen($this->password) < 4){
             $errors[] = 'salasana on alle 4 merkkiä.';
         }
         return $errors;
