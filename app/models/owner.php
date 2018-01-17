@@ -2,7 +2,7 @@
 
   class Owner extends BaseModel{
 
-    public $id, $name, $password, $validators;
+    public $id, $name, $password, $passwordRe, $validators;
 
     public function __constructor($attributes) {
     	parent::__constructor($attributes);
@@ -76,16 +76,39 @@
     public function validate_name() {
         $errors = array();
         if($this->name == '' || $this->name == null) {
-            $errors[] = 'nimi ei voi olla tyhjä';
+            $errors[] = 'nimi ei voi olla tyhjä.';
         }
+
+        if(strlen($this->name) > 20) {
+            $errors[] = 'nimi on yli 20 merkkiä.';
+        }
+
+        if(strlen($this->name) < 4) {
+            $errors[] = 'nimi on alle 4 merkkiä.';
+        }
+
         return $errors;
     }
 
     public function validate_password() {
         $errors = array();
         if($this->password == '' || $this->password == null) {
-            $errors[] = 'salasana ei voi olla tyhjä';
+            $errors[] = 'salasana ei voi olla tyhjä.';
+        }
+
+        if($this->password != $this->passwordRe) {
+            $errors[] = 'salasanat eivät täsmää.';
+        }
+
+        if(strlen($this->password) > 20) {
+            $errors[] = 'salasana on yli 20 merkkiä.';
+        }
+
+        if(strlen($this->password) < 4) {
+            $errors[] = 'salasana on alle 4 merkkiä.';
         }
         return $errors;
     }
+
+
   }

@@ -13,18 +13,25 @@ class JokeController extends BaseController {
 
 
 	public static function store(){
-    $params = $_POST;
-    $user = $this->get_user_logged_in();
+        $params = $_POST;
+        $user = $this->get_user_logged_in();
 
-    	$joke = new Joke(array(
-      		'title' => $params['title'],
-      		'owner_id' => $user->id,
-      		'description' => $params['description'],
-    	));
+        $attributes = array(
+            'title' => $params['title'],
+          	'owner_id' => $user->id,
+            'description' => $params['description'],
+        );
 
-    	$joke->save();
+        $joke = new Joke($attributes);
+        $errors = $joke->errors();
 
-    	Redirect::to('/' . $joke->id, array('message' => 'Vitsi on lisätty kirjastoosi!'));	
+        if(count($errors) > 0) {
+            view::make('joke/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+        }else{
+            $joke->update();
+
+            Redirect::to('joke' . $joke->$id, array('message' => 'Vitsi lisätty onnistuneesti!'));
+        }   	
     }
 
     public static function joke($id) {
