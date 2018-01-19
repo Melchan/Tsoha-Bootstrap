@@ -18,13 +18,16 @@
     public function errors(){
       // Lisätään $errors muuttujaan kaikki virheilmoitukset taulukkona
       $errors = array();
-      
-      foreach($this->validators as $validator){
-        // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
-        $validator_errors = $this->{$validator}();
-        $errors = array_merge($errors,$validator_errors);
+      //ei saatana
+      if (is_array($this->validators)){
+        foreach($this->validators as $validator){
+          // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+          $validator_errors = $this->{$validator}();
+          $errors = array_merge($errors,$validator_errors);
+        }
+      } else {
+        $errors = array('validators on tyhjä kutsutulle luokalle', 'en vittu tiedä mikä mättää');
       }
-
       return $errors;
     }
 

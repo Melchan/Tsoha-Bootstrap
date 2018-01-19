@@ -11,7 +11,7 @@
   {% endif %}
 
   {% if message %}
-    <div class="alert alert-danger">
+    <div class="alert alert-success">
       <ul>
           <li>{{message}}</li>
       </ul>
@@ -31,5 +31,5 @@
 
     <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
   </form>
-  <a href="{{base_path}}/register">Rekisteröidy</a>
+  <a href="{{base_path}}/register"><u>Rekisteröidy</u></a>
 {% endblock %}

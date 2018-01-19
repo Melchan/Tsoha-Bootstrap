@@ -4,8 +4,8 @@
 
     public $id, $name, $password, $passwordRe, $validators;
 
-    public function __constructor($attributes) {
-    	parent::construct($attributes);
+    public function __construct($attributes) {
+    	parent::__construct($attributes);
         $this->validators = array('validate_name', 'validate_password');
     }
 
@@ -46,13 +46,23 @@
     	return null;
     }
 
-    public static function save(){
-  		$query = DB::connection()->prepare('INSERT INTO owner (name, password) VALUES (:id, :name, :password) RETURNING id');
+    public function update(){
+        $query = DB::connection()->prepare('UPDATE owner SET password = :password WHERE id = :id');
+        $query->execute(array('id' => $this->id, 'password' => $this->password));
+    }
+
+    public function save(){
+  		$query = DB::connection()->prepare('INSERT INTO owner (name, password) VALUES (:name, :password) RETURNING id');
   		$query->execute(array('name' => $this->name, 'password' => $this->password));
   		$row = $query->fetch();
   		//Kint::trace();
   		//Kint::dump($row);
   		$this->id = $row['id'];
+    }
+
+    public function destroy(){
+        $query = DB::connection()->prepare('DELETE FROM owner WHERE id = :id');
+        $query->execute(array('id' => $this->id));
     }
 
     public static function authenticate($user_name, $user_password){
@@ -71,6 +81,18 @@
             return null;
         }
     }
+
+    public function checkName($name){
+        $query = DB::connection()->prepare('SELECT * FROM owner WHERE name = :name LIMIT 1');
+        $query->execute(array('name' => $name));
+        $row = $query->fetch();
+
+        if(strcmp($row['name'],$name)){
+            return 0;
+        } else {
+            return 1;
+        }
+    }
     
 
     public function validate_name() {
@@ -87,6 +109,10 @@
             $errors[] = 'nimi on alle 4 merkkiä.';
         }
 
+        if($this->checkName($this->name)){
+            $errors[] = 'nimi ei ole uniikki';
+        }
+
         return $errors;
     }
 
@@ -96,7 +122,7 @@
             $errors[] = 'salasana ei voi olla tyhjä.';
         }
 
-        if(!strcmp($this->password,$this->passwordRe)){
+        if(strcmp($this->password,$this->passwordRe)){
             $errors[] = 'salasanat eivät täsmää.';
         }
 

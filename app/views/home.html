@@ -1,11 +1,14 @@
 {% extends "base.html" %}
-
 {% block content %}
-  <div class="page-header">
-    <h1>Tervetuloa Tsoha Bootstrappiin!</h1>
-  </div>
+<h1>Hauskoja vitsejä</h1>
 
-  <p>
-    <a href="http://tsoha.github.io" class="btn btn-primary btn-lg">Tutustu materiaaliin <span class="glyphicon glyphicon-chevron-right"></span></a>
-  </p>
+    {%for joke in jokes%}
+    <div class = "well">
+        <h4><a href="{{base_path}}/{{joke.id}}">{{joke.title}}</a></h4>
+        
+        <p>{{joke.description}}</p>
+        
+    
+	</div>
+    {% endfor %}
 {% endblock %}

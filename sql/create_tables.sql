@@ -14,14 +14,16 @@ CREATE TABLE joke(
   id SERIAL PRIMARY KEY,
   owner_id INTEGER REFERENCES owner(id), -- Viiteavain Player-tauluun
   title varchar(50) NOT NULL,
-  description varchar(400)
+  description varchar(400),
+  ts_create TIMESTAMP DEFAULT Current_timestamp
 );
 
 CREATE TABLE comment(
   id SERIAL PRIMARY KEY, -- SERIAL tyyppinen pääavain pitää huolen, että tauluun lisätyllä rivillä on aina uniikki pääavain. Kätevää!
   message varchar(50) NOT NULL, -- Muista erottaa sarakkeiden määrittelyt pilkulla!
   owner_id INTEGER REFERENCES owner(id),
-  joke_id INTEGER REFERENCES joke(id)
+  joke_id INTEGER REFERENCES joke(id),
+  ts_create TIMESTAMP DEFAULT Current_timestamp
 );
 
 CREATE TABLE joke_category(

@@ -1,8 +1,17 @@
 <?php
+  
+  function check_logged_in(){
+    BaseController::check_logged_in();
+  }
+
+
 
   $routes->get('/', function() {
-    JokeController::index();
+    HomeController::home();
   });
+
+
+
 
   $routes->get('/login', function() {
     UserController::login();
@@ -10,6 +19,22 @@
   
   $routes->post('/login', function(){
     UserController::handle_login();
+  });
+
+  $routes->post('/logout', 'check_logged_in', function(){
+    UserController::logout();
+  });
+
+  $routes->get('/profile', 'check_logged_in', function(){
+    UserController::profile();
+  });
+
+  $routes->post('/destroy', 'check_logged_in', function(){
+    UserController::destroy();
+  });
+
+  $routes->post('/change_password', 'check_logged_in', function(){
+    UserController::changePassword();
   });
 
   $routes->get('/register', function(){
@@ -20,25 +45,28 @@
     UserController::handleRegistration();
   });
 
-  $routes->get('/joke', function() {
-    JokeController::index();
+
+
+
+
+  $routes->get('/newjoke', 'check_logged_in', function(){
+    JokeController::newJoke();
+  });
+
+  $routes->post('/newjoke', 'check_logged_in', function(){
+    JokeController::store();
+  });
+
+  $routes->get('/userjokes', 'check_logged_in', function(){
+    JokeController::userJokes();
+  });
+
+  $routes->get('/:id', function($id){
+    JokeController::show($id);
   });
 
 
 
-
-  $routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
-  });
-
-  $routes->get('/testuser', function() {
-    HelloWorldController::testuser();
-  });
-
-  $routes->get('/testownerjoke', function() {
-    HelloWorldController::testowenerjoke();
-  });
-
-  $routes->get('/testedit', function() {
-    HelloWorldController::testedit();
+  $routes->post('/addcomment', 'check_logged_in', function(){
+    CommentController::addcomment();
   });

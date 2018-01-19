@@ -1,11 +1,10 @@
 <?php
-
   class Category extends BaseModel{
 
     public $id, $tag, $validators;
 
-    public function __constructor($attributes) {
-    	parent::construct($attributes);
+    public function __construct($attributes) {
+    	parent::__construct($attributes);
         $this->validators = array('validate_tag');
     }
 
@@ -45,7 +44,12 @@
     	return null;
     }
 
-    public static function save() {
+    public function update(){
+        $query = DB::connection()->prepare('UPDATE category SET tag = :tag WHERE id = :id');
+        $query->execute(array('id' => $this->id, 'tag' => $this->tag));
+    }
+
+    public function save() {
 
     	$query = DB::connection()->prepare('INSERT INTO category (tag) VALUES (:tag) RETURNING id');
     	$query->execute(array('tag' => $this->tag));
@@ -53,6 +57,11 @@
     	//Kint::trace();
     	//Kint::dump($row);
     	$this->id = row['id'];
+    }
+
+    public function destroy(){
+        $query = DB::connection()->prepare('DELETE FROM category WHERE id = :id');
+        $query->execute(array('id' => $this->id));
     }
 
     public function validate_tag() {
