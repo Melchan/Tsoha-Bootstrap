@@ -111,8 +111,8 @@
         if($this->message == '' || $this->message == null) {
             $errors[] = 'viesti ei voi olla tyhjä.';
         }
-        if(strlen($this->message) > 300) {
-           $errors[] = 'viesti on yli 300 merkkiä pitkä.'; 
+        if(strlen($this->message) > 50) {
+           $errors[] = 'viesti on yli 50 merkkiä pitkä.'; 
         }
         return $errors;
     }
