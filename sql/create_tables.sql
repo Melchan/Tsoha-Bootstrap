@@ -14,7 +14,7 @@ CREATE TABLE joke(
   id SERIAL PRIMARY KEY,
   owner_id INTEGER REFERENCES owner(id), -- Viiteavain Player-tauluun
   title varchar(50) NOT NULL,
-  description varchar(400),
+  description varchar(2000),
   ts_create TIMESTAMP DEFAULT Current_timestamp
 );
 

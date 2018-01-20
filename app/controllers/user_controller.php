@@ -52,7 +52,7 @@ class UserController extends BaseController {
         if(count($errors) > 0){
     		View::make('user/profile.html', array('errors' => $errors));
     	}else{
-    		$user->update();
+    		$user->save();
 
     		Redirect::to('/profile', array('message' => 'Olet luonut vaihtanut salasanan!'));	
     	}

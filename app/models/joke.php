@@ -99,10 +99,15 @@
         $query = DB::connection()->prepare('SELECT * FROM joke WHERE title = :title LIMIT 1');
         $query->execute(array('title' => $title));
         $row = $query->fetch();
-        if (strcmp($row['title'], $title)){
-            return 0;
-        } else {
+
+        $query = DB::connection()->prepare('SELECT * FROM joke WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $this->id));
+        $row2 = $query->fetch();
+
+        if (strcmp($row['title'], $title) && is_null($row2)){
             return 1;
+        } else {
+            return 0;
         }
     }
 
@@ -121,6 +126,9 @@
         $errors = array();
         if($this->description == '' || $this->description == null) {
             $errors[] = 'Vitsi osio ei saa olla tyhjä';
+        }
+        if(strlen($this->description) > 1000){
+            $errors[] = 'Vitsi on yli 1000 merkkiä';
         }
         return $errors;
     }

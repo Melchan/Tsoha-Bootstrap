@@ -67,6 +67,14 @@
     JokeController::destroyJoke();
   });
 
+  $routes->post('/edit', 'check_logged_in', function(){
+    JokeController::editJoke();
+  });
+
+  $routes->post('/jokeedit', 'check_logged_in', function(){
+    JokeController::edit();
+  });
+
 
 
   $routes->post('/addcomment', 'check_logged_in', function(){

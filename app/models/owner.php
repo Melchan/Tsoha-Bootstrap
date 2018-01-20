@@ -87,10 +87,14 @@
         $query->execute(array('name' => $name));
         $row = $query->fetch();
 
-        if(strcmp($row['name'],$name)){
-            return 0;
-        } else {
+        $query = DB::connection()->prepare('SELECT * FROM owner WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $this->id));
+        $row2 = $query->fetch();
+
+        if(strcmp($row['name'],$name) && is_null($row2)){
             return 1;
+        } else {
+            return 0;
         }
     }
     
