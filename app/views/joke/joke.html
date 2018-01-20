@@ -11,7 +11,16 @@
     </div>
 {% endif %}
 
+{% if user.id == joke.owner_id %}
+  <form method="post" action="{{base_path}}/destroyjoke">
+     <div class="form-group">
+        <input type="hidden" name="id" value={{joke.id}} readonly>
+      </div>
+    <button type="submit" class="btn btn-danger">Tuhoa vitsi</button>
+  </form>
+{% endif %}
 
+  <p></p>
   <div class = "well">        
         <p>{{joke.description}}</p>
   </div>
@@ -31,12 +40,20 @@
       <div class="form-group">
         <label>Kirjoita kommentti</label>
         <textarea name="message" class="form-control"></textarea>
-        <input type="hidden" name="joke_id" />
       </div>
-
+      <div class="form-group">
+        <input type="hidden" name="joke_id" value={{joke.id}} readonly>
+      </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Kommetoi</button>
       </div>
 </form>
 {% endif %}
+
+{%for comment in comments%}
+    <div class = "panel panel-default">
+        <p>{{comment.message}}</p>
+    </div>
+    {% endfor %}
+
 {% endblock %}

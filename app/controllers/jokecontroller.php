@@ -12,6 +12,23 @@ class JokeController extends BaseController {
         View::make('joke/ownerjokes.html', array('jokes' => $jokes));
     }
 
+    public static function destroyJoke(){
+        $params = $_POST;
+
+        if(!is_null($params['id'])) {
+            $joke = Joke::find($params['id']);
+            $joke->destroy();
+        
+            $user = BaseController::get_user_logged_in();
+            $jokes = Joke::user_all($user->id);
+            View::make('joke/ownerjokes.html', array('jokes' => $jokes, 'message' => 'Vitsi poistettu'));
+        }else{
+            $errors = array();
+            $errors[] = 'Vitsi ei poistunut';
+            View::make('joke/ownerjokes.html', array('jokes' => $jokes, 'errors' => $errors));
+        }
+    }
+
 
 	public static function store(){
         $params = $_POST;
@@ -37,7 +54,9 @@ class JokeController extends BaseController {
 
     public static function show($id) {
     	$joke = Joke::find($id);
-    	View::make('/joke/joke.html', array('joke' =>$joke));
+        $comments = Comment::jokeAll($id);
+        $user = BaseController::get_user_logged_in();
+    	View::make('/joke/joke.html', array('joke' =>$joke, 'user' =>$user, 'comments' => $comments));
     }
     // HTML puoli toteuttamatta
     public static function update($id) {

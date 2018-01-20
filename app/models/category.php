@@ -56,7 +56,7 @@
     	$row = $query->fetch();
     	//Kint::trace();
     	//Kint::dump($row);
-    	$this->id = row['id'];
+    	$this->id = $row['id'];
     }
 
     public function destroy(){

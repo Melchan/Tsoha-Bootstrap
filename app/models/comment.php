@@ -97,9 +97,8 @@
     	$query->execute(array('message' => $this->message, 'owner_id' => $this->owner_id, 
     		'joke_id' => $this->joke_id));
     	$row = $query->fetch();
-    	//Kint::trace();
-    	//Kint::dump($row);
-    	$this->id = row['id'];
+
+    	$this->id = $row['id'];
     }
 
     public function destroy(){
@@ -128,8 +127,11 @@
 
     public function validate_joke_id() {
         $errors = array();
-        if($this->joke_id == '' || $this->joke_id == null || !is_int($this->joke_id)) {
-            $errors[] = 'joke_id ei ole automaattisesti asetettu kunnolla';
+        if($this->joke_id == '' || $this->joke_id == null) {
+            $errors[] = 'joke_id tyhjä tai null';
+        }
+        if(is_int($this->joke_id)){
+            $errors[] = 'joke_id ei ole int';
         }
         return $errors;
     }

@@ -85,6 +85,12 @@
     }
 
     public function destroy(){
+        $comments =  Comment::jokeAll($this->id);
+            if (!is_null($comments)){
+                foreach ($comments as $comment) {
+                    $comment->destroy();
+                }
+            }
         $query = DB::connection()->prepare('DELETE FROM joke WHERE id = :id');
         $query->execute(array('id' => $this->id));
     }

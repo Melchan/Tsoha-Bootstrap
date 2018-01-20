@@ -47,8 +47,6 @@
 
 
 
-
-
   $routes->get('/newjoke', 'check_logged_in', function(){
     JokeController::newJoke();
   });
@@ -63,6 +61,10 @@
 
   $routes->get('/:id', function($id){
     JokeController::show($id);
+  });
+
+  $routes->post('/destroyjoke', 'check_logged_in', function(){
+    JokeController::destroyJoke();
   });
 
 

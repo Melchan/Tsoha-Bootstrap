@@ -9,18 +9,18 @@
         $attributes = array(
             'message' => $params['message'],
           	'owner_id' => $user->id,
-            'joke_id' => $params['joke_id'],
+            'joke_id' => $params['joke_id']
         );
 
         $comment = new Comment($attributes);
         $errors = $comment->errors();
 
         if(count($errors) > 0) {
-            Redirect::to('{{base_path}}/'.$user->id, array('errors' => $errors));
+            Redirect::to('/'.$params['joke_id'], array('errors' => $errors));
         }else{
             $comment->save();
 
-            Redirect::to('{{base_path}}/'.$user->id, array('message' => 'Kommentti lisätty!'));
+            Redirect::to('/'.$params['joke_id'], array('message' => 'Kommentti lisätty!'));
         }   	
   	}
   }
