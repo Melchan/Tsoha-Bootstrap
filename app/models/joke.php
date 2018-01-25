@@ -119,7 +119,9 @@
         if($this->identicalTitle($this->title)){
             $errors[] = 'Otsikko ei ole uniikki';
         }
-        return $errors;
+        if(strlen($this->description) > 50){
+            $errors[] = 'Otsikko on yli 50 merkkiä';
+        }        return $errors;
     }
 
     public function validate_description() {
